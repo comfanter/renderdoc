@@ -1,10 +1,7 @@
 #!/bin/sh
 set -ev
 
-ls -lR /opt/pyenv
-
-file /opt/pyenv/shims/python3
-cat /opt/pyenv/shims/python3
+echo "print('hi')" | bash -x python3
 
 sudo add-apt-repository -y 'ppa:ubuntu-toolchain-r/test'
 sudo add-apt-repository -y 'ppa:beineri/opt-qt562-trusty'
