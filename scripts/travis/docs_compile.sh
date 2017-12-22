@@ -38,7 +38,7 @@ echo "disassemble /m" >> gdb.cmd
 echo -e "import renderdoc\nprint(dir(renderdoc))" > test.py
 LD_DEBUG_OUTPUT=ld.log LD_DEBUG=all gdb --batch --command=gdb.cmd --args /usr/bin/python3 test.py
 
-cat ld.log*
+cat $(ls ld.log.* | tail -n 1) | grep -v 'lookup in file=/lib'
 rm ld.log*
 
 popd
