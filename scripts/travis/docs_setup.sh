@@ -1,6 +1,8 @@
 #!/bin/sh
 set -ev
 
+ls -lR /opt/pyenv
+
 sudo add-apt-repository -y 'ppa:ubuntu-toolchain-r/test'
 sudo add-apt-repository -y 'ppa:beineri/opt-qt562-trusty'
 sudo add-apt-repository -y 'deb http://apt.llvm.org/precise/ llvm-toolchain-precise-3.8 main'
