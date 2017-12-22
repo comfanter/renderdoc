@@ -19,12 +19,18 @@ wc -l qrenderdoc/qrenderdoc_python.cxx
 
 cd bin
 
+echo "run" > gdb.cmd
+echo "bt" >> gdb.cmd
+echo "info proc mappings" >> gdb.cmd
+echo "p &PyType_Type" >> gdb.cmd
+echo "p PyType_Type" >> gdb.cmd
+echo "p PyType_Type.tp_basicsize" >> gdb.cmd
+echo "disassemble /s" >> gdb.cmd
+
 echo -e "import renderdoc\nprint(dir(renderdoc))" > test.py
-echo -e "run\nbt" > gdb.cmd
 gdb --batch --command=gdb.cmd --args /usr/bin/python3 test.py
 
 echo -e "import qrenderdoc\nprint(dir(qrenderdoc))" > test.py
-echo -e "run\nbt" > gdb.cmd
 gdb --batch --command=gdb.cmd --args /usr/bin/python3 test.py
 
 popd
