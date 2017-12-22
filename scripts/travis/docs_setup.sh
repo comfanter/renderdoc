@@ -1,7 +1,15 @@
 #!/bin/sh
 set -ev
 
-echo "print('hi')" | bash -x python3
+echo "Outside env"
+
+env
+
+echo "Inside env:"
+
+echo -e "import sys\nimport os\n\nprint(sys.executable)\nprint(os.environ)" |  python3
+
+exit
 
 sudo add-apt-repository -y 'ppa:ubuntu-toolchain-r/test'
 sudo add-apt-repository -y 'ppa:beineri/opt-qt562-trusty'
