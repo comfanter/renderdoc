@@ -11,7 +11,7 @@ mkdir build
 pushd build
 
 # Do a minimal build with as little as possible to get the python modules
-CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_GL=OFF -DENABLE_VULKAN=OFF -DENABLE_RENDERDOCCMD=OFF -DENABLE_QRENDERDOC=OFF ..
+CC=gcc-6 CXX=g++-6 cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_GL=OFF -DENABLE_VULKAN=OFF -DENABLE_RENDERDOCCMD=OFF -DENABLE_QRENDERDOC=OFF ..
 make -j2
 
 cat CMakeCache.txt
@@ -36,10 +36,10 @@ echo "info reg" >> gdb.cmd
 echo "disassemble /m" >> gdb.cmd
 
 echo -e "import renderdoc\nprint(dir(renderdoc))" > test.py
-gdb --batch --command=gdb.cmd --args /usr/bin/python3 test.py
+LD_DEBUG_OUTPUT=ld.log LD_DEBUG=all gdb --batch --command=gdb.cmd --args /usr/bin/python3 test.py
 
-echo -e "import qrenderdoc\nprint(dir(qrenderdoc))" > test.py
-gdb --batch --command=gdb.cmd --args /usr/bin/python3 test.py
+cat ld.log*
+rm ld.log*
 
 popd
 
