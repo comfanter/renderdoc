@@ -25,7 +25,7 @@ echo "info proc mappings" >> gdb.cmd
 echo "p &PyType_Type" >> gdb.cmd
 echo "p PyType_Type" >> gdb.cmd
 echo "p PyType_Type.tp_basicsize" >> gdb.cmd
-echo "disassemble /s" >> gdb.cmd
+echo "disassemble /m" >> gdb.cmd
 
 echo -e "import renderdoc\nprint(dir(renderdoc))" > test.py
 gdb --batch --command=gdb.cmd --args /usr/bin/python3 test.py
